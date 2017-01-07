@@ -1,7 +1,12 @@
-FROM python:2.7
+FROM hypriot/rpi-python
+
+RUN pip install --upgrade pip
 
 RUN pip install -I flexget transmissionrpc
 
-VOLUME ["/storage/.flexget"]
+RUN mkdir -p /root/.flexget \
+    && touch /root/.flexget/config.yml
+
+VOLUME ["/root/.flexget"]
 
 CMD ["/usr/local/bin/flexget", "--loglevel", "info", "daemon", "start"]
