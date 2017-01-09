@@ -1,11 +1,16 @@
-FROM hypriot/rpi-python
+FROM resin/rpi-raspbian:jessie
 
-RUN pip install --upgrade pip
+RUN apt-get update && apt-get install -y \
+        python3 \
+        curl \
+        --no-install-recommends && \
+        rm -rf /var/lib/apt/lists/*
 
-RUN pip install -I flexget transmissionrpc
+RUN curl https://bootstrap.pypa.io/get-pip.py | python3
 
-RUN mkdir -p /root/.flexget \
-    && touch /root/.flexget/config.yml
+RUN pip3 install -I flexget transmissionrpc
+
+RUN mkdir -p /root/.flexget 
 
 VOLUME ["/root/.flexget"]
 
