@@ -1,2 +1,2 @@
-# libreelec-flexget
-Libreelec build for flexget
+# flexget-docker
+Build for flexget with minimum apt-get install and get-pip.py
